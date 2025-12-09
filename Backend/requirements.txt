@@ -1,0 +1,69 @@
+# FastAPI and Web Framework
+fastapi==0.115.0
+uvicorn[standard]==0.32.0
+python-multipart==0.0.12
+pydantic==2.9.2
+pydantic-settings==2.6.0
+
+# Database
+sqlalchemy==2.0.35
+psycopg2-binary==2.9.9
+alembic==1.13.3
+
+# Authentication & Security
+python-jose[cryptography]==3.3.0
+passlib[bcrypt]==1.7.4
+python-dotenv==1.0.0
+bcrypt==4.2.0
+httpx==0.27.2
+
+# LLM Providers
+openai==1.51.2
+anthropic==0.39.0
+tiktoken==0.5.2
+
+# RAG (Retrieval-Augmented Generation)
+langchain==0.1.0
+langchain-openai==0.0.2
+langchain-community==0.0.10
+chromadb==0.4.18
+sentence-transformers==2.2.2
+pypdf==3.17.4
+python-docx==1.1.0
+pymupdf==1.23.8  # Para PDFs complejos
+
+# Vector Database (Embeddings)
+faiss-cpu==1.7.4  # Alternativa a Pinecone (local)
+# pinecone-client==2.2.4  # Opcional: Si usas Pinecone cloud
+
+# IDS (Autoencoder + SHAP)
+torch==2.1.1
+numpy==1.26.2
+pandas==2.1.4
+scikit-learn==1.3.2
+shap==0.44.0
+
+# Simulation Engine
+scipy==1.11.4
+matplotlib==3.8.2
+
+# WebSocket & Async
+websockets==13.1
+
+# Utils
+python-dateutil==2.8.2
+aiofiles==23.2.1
+
+# Utilities
+requests==2.31.0
+httpx==0.25.2
+pyyaml==6.0.1
+Jinja2==3.1.2
+
+# Testing
+pytest==7.4.3
+pytest-asyncio==0.21.1
+httpx==0.25.2
+
+# Logging & Monitoring
+python-json-logger==2.0.7

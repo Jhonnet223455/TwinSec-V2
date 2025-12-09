@@ -1,0 +1,226 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* TwinSec Studio - Cybersecurity OT Platform Design System */
+
+@layer base {
+  :root {
+    /* Dark cybersecurity theme */
+    --background: 210 17% 6%;
+    --foreground: 213 31% 91%;
+
+    --card: 210 17% 8%;
+    --card-foreground: 213 31% 91%;
+
+    --popover: 210 17% 8%;
+    --popover-foreground: 213 31% 91%;
+
+    /* Primary: Cyber blue */
+    --primary: 200 100% 50%;
+    --primary-foreground: 210 17% 6%;
+    --primary-glow: 200 100% 70%;
+
+    /* Secondary: Dark panels */
+    --secondary: 210 17% 12%;
+    --secondary-foreground: 213 31% 91%;
+
+    --muted: 210 17% 10%;
+    --muted-foreground: 215 20% 65%;
+
+    /* Accent: Electric green for success/safe states */
+    --accent: 142 76% 36%;
+    --accent-foreground: 213 31% 91%;
+    --accent-bright: 142 76% 56%;
+
+    /* Warning: Amber for alerts */
+    --warning: 45 93% 58%;
+    --warning-foreground: 210 17% 6%;
+
+    /* Critical/Attack: Red for threats */
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 213 31% 91%;
+    --critical: 0 100% 50%;
+
+    --border: 210 17% 16%;
+    --input: 210 17% 12%;
+    --ring: 200 100% 50%;
+
+    --radius: 0.75rem;
+
+    /* Industrial/OT specific colors */
+    --industrial-orange: 24 100% 50%;
+    --sensor-green: 120 100% 40%;
+    --actuator-blue: 240 100% 60%;
+    --alarm-red: 0 100% 50%;
+
+    /* Gradients */
+    --gradient-cyber: linear-gradient(135deg, hsl(200 100% 50%), hsl(240 100% 60%));
+    --gradient-alert: linear-gradient(135deg, hsl(0 100% 50%), hsl(24 100% 50%));
+    --gradient-safe: linear-gradient(135deg, hsl(142 76% 36%), hsl(120 100% 40%));
+    --gradient-panel: linear-gradient(180deg, hsl(210 17% 10%), hsl(210 17% 8%));
+
+    /* Shadows */
+    --shadow-cyber: 0 0 20px hsl(200 100% 50% / 0.3);
+    --shadow-panel: 0 4px 20px hsl(210 17% 2% / 0.5);
+    --shadow-critical: 0 0 15px hsl(0 100% 50% / 0.4);
+
+    /* Typography */
+    --font-mono: 'JetBrains Mono', 'Fira Code', 'Consolas', monospace;
+
+    --sidebar-background: 0 0% 98%;
+
+    --sidebar-foreground: 240 5.3% 26.1%;
+
+    --sidebar-primary: 240 5.9% 10%;
+
+    --sidebar-primary-foreground: 0 0% 98%;
+
+    --sidebar-accent: 240 4.8% 95.9%;
+
+    --sidebar-accent-foreground: 240 5.9% 10%;
+
+    --sidebar-border: 220 13% 91%;
+
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 210 40% 98%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 212.7 26.8% 83.9%;
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans;
+    background-image: 
+      radial-gradient(circle at 20% 80%, hsl(200 100% 50% / 0.05) 0%, transparent 50%),
+      radial-gradient(circle at 80% 20%, hsl(240 100% 60% / 0.05) 0%, transparent 50%);
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: hsl(var(--muted));
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: hsl(var(--border));
+    border-radius: 4px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: hsl(var(--primary));
+  }
+
+  /* Typography */
+  .font-mono {
+    font-family: var(--font-mono);
+  }
+
+  /* Utility classes */
+  .gradient-cyber {
+    background: var(--gradient-cyber);
+  }
+
+  .gradient-alert {
+    background: var(--gradient-alert);
+  }
+
+  .gradient-safe {
+    background: var(--gradient-safe);
+  }
+
+  .gradient-panel {
+    background: var(--gradient-panel);
+  }
+
+  .shadow-cyber {
+    box-shadow: var(--shadow-cyber);
+  }
+
+  .shadow-panel {
+    box-shadow: var(--shadow-panel);
+  }
+
+  .shadow-critical {
+    box-shadow: var(--shadow-critical);
+  }
+
+  /* Animation classes */
+  .animate-pulse-glow {
+    animation: pulse-glow 2s ease-in-out infinite alternate;
+  }
+
+  @keyframes pulse-glow {
+    from {
+      box-shadow: 0 0 5px hsl(var(--primary) / 0.5);
+    }
+    to {
+      box-shadow: 0 0 20px hsl(var(--primary) / 0.8);
+    }
+  }
+
+  .animate-danger-pulse {
+    animation: danger-pulse 1s ease-in-out infinite alternate;
+  }
+
+  @keyframes danger-pulse {
+    from {
+      box-shadow: 0 0 5px hsl(var(--destructive) / 0.5);
+    }
+    to {
+      box-shadow: 0 0 15px hsl(var(--destructive) / 0.9);
+    }
+  }
+
+  /* Grid pattern for auth pages */
+  .bg-grid {
+    background-image: 
+      linear-gradient(to right, hsl(var(--border)) 1px, transparent 1px),
+      linear-gradient(to bottom, hsl(var(--border)) 1px, transparent 1px);
+    background-size: 40px 40px;
+  }
+}
