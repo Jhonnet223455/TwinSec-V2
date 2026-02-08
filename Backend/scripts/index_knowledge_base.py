@@ -9,13 +9,22 @@ Opciones:
 """
 
 import sys
+import os
 from pathlib import Path
-
-# Agregar la carpeta api al path
-sys.path.append(str(Path(__file__).parent.parent / "api"))
-
-from app.services.rag_service import RAGService
 import argparse
+
+# Configurar rutas
+script_dir = Path(__file__).parent
+backend_dir = script_dir.parent
+api_dir = backend_dir / "api"
+
+# Agregar la carpeta api al path ANTES de cualquier import
+sys.path.insert(0, str(api_dir))
+
+# Configurar la variable de entorno para que pydantic-settings encuentre el .env
+os.environ.setdefault('ENV_FILE', str(api_dir / '.env'))
+
+from app.services.rag_service import get_rag_service
 
 
 def main():
@@ -41,11 +50,8 @@ def main():
     print(f"💾 ChromaDB: {chroma_db_path}")
     print("=" * 60)
     
-    # Crear servicio RAG
-    rag_service = RAGService(
-        knowledge_base_path=str(knowledge_base_path),
-        persist_directory=str(chroma_db_path)
-    )
+    # Obtener servicio RAG
+    rag_service = get_rag_service()
     
     # Inicializar (indexar)
     rag_service.initialize(force_reindex=args.force)
@@ -83,8 +89,8 @@ def main():
         else:
             print("⚠️ No se encontraron resultados relevantes")
     
-    print("\n🎉 Listo para usar el sistema RAG!")
-    print("Ahora puedes iniciar la API y el LLM usará contexto de los libros.")
+    print("Listo el RAG")
+   
 
 
 if __name__ == "__main__":

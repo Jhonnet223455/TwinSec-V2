@@ -3,10 +3,9 @@ import { useNavigate } from 'react-router-dom';
 import { useAuth } from '@/hooks/useAuth';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Github, Mail } from 'lucide-react';
+import { Mail, Facebook } from 'lucide-react';
 import { z } from 'zod';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -24,8 +23,11 @@ const signInSchema = z.object({
   password: z.string().min(6, 'Password must be at least 6 characters'),
 });
 
-const signUpSchema = signInSchema.extend({
+const signUpSchema = z.object({
+  email: z.string().email('Invalid email address').max(255),
+  password: z.string().min(6, 'Password must be at least 6 characters'),
   confirmPassword: z.string(),
+  fullName: z.string().optional(),
 }).refine((data) => data.password === data.confirmPassword, {
   message: "Passwords don't match",
   path: ["confirmPassword"],
@@ -47,7 +49,7 @@ export default function Auth() {
 
   const signUpForm = useForm<z.infer<typeof signUpSchema>>({
     resolver: zodResolver(signUpSchema),
-    defaultValues: { email: '', password: '', confirmPassword: '' },
+    defaultValues: { email: '', password: '', confirmPassword: '', fullName: '' },
   });
 
   const resetForm = useForm<z.infer<typeof resetSchema>>({
@@ -64,14 +66,14 @@ export default function Auth() {
   };
 
   const handleSignUp = async (values: z.infer<typeof signUpSchema>) => {
-    await signUp(values.email, values.password);
+    await signUp(values.email, values.password, values.fullName);
   };
 
   const handleReset = async (values: z.infer<typeof resetSchema>) => {
     await resetPassword(values.email);
   };
 
-  const OAuthButton = ({ provider, icon: Icon, label }: { provider: 'google' | 'facebook' | 'github', icon: any, label: string }) => (
+  const OAuthButton = ({ provider, icon: Icon, label }: { provider: 'google' | 'facebook', icon: any, label: string }) => (
     <Button
       type="button"
       variant="outline"
@@ -150,15 +152,27 @@ export default function Auth() {
               </div>
 
               <div className="space-y-2">
-                <OAuthButton provider="google" icon={Mail} label="Google" />
-                <OAuthButton provider="facebook" icon={Mail} label="Facebook" />
-                <OAuthButton provider="github" icon={Github} label="GitHub" />
+                <OAuthButton provider="google" icon={Mail} label="Continue with Google" />
+                <OAuthButton provider="facebook" icon={Facebook} label="Continue with Facebook" />
               </div>
             </TabsContent>
 
             <TabsContent value="signup" className="space-y-4">
               <Form {...signUpForm}>
                 <form onSubmit={signUpForm.handleSubmit(handleSignUp)} className="space-y-4">
+                  <FormField
+                    control={signUpForm.control}
+                    name="fullName"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Full Name (Optional)</FormLabel>
+                        <FormControl>
+                          <Input placeholder="John Doe" {...field} />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
                   <FormField
                     control={signUpForm.control}
                     name="email"
@@ -212,9 +226,8 @@ export default function Auth() {
               </div>
 
               <div className="space-y-2">
-                <OAuthButton provider="google" icon={Mail} label="Google" />
-                <OAuthButton provider="facebook" icon={Mail} label="Facebook" />
-                <OAuthButton provider="github" icon={Github} label="GitHub" />
+                <OAuthButton provider="google" icon={Mail} label="Sign up with Google" />
+                <OAuthButton provider="facebook" icon={Facebook} label="Sign up with Facebook" />
               </div>
             </TabsContent>
 

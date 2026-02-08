@@ -174,13 +174,6 @@ El schema define que cada modelo DEBE tener:
   - Arquitecturas de control industrial
   - Seguridad en sistemas críticos
 
-#### 4. **Distributed Control Systems**
-- **Autor:** William L. Mostia
-- **¿Por qué?**
-  - Arquitecturas distribuidas
-  - Comunicación industrial (Modbus, OPC)
-  - Redundancia y tolerancia a fallos
-  - Diseño de HMI
 
 ---
 
@@ -194,13 +187,6 @@ El schema define que cada modelo DEBE tener:
   - Flujo de potencia
   - Estabilidad de red
 
-#### 6. **Microgrid: Advanced Control Methods and Renewable Energy System Integration**
-- **Autor:** Magdi S. Mahmoud
-- **¿Por qué?**
-  - Control de microgrids con renovables
-  - Gestión de energía
-  - Sistemas híbridos (solar + baterías)
-  - Operación en isla
 
 #### 7. **Smart Grid: Fundamentals of Design and Analysis**
 - **Autor:** James Momoh
@@ -222,13 +208,6 @@ El schema define que cada modelo DEBE tener:
   - Navegación y path planning
   - Modelos no lineales
 
-#### 9. **Quadrotor Dynamics and Control**
-- **Autor:** Teppo Luukkonen
-- **¿Por qué?**
-  - Ecuaciones de movimiento (Euler-Lagrange)
-  - Control de actitud (roll, pitch, yaw)
-  - Modelado de motores y hélices
-  - Simulación de perturbaciones
 
 ---
 

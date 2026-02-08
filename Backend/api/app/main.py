@@ -9,8 +9,8 @@ from app.config import get_settings
 from app.core.logging import get_logger
 
 # Import routers
-from app.routers import models, attacks, simulations, websocket
-# from app.routers import auth, logs
+from app.routers import models, attacks, simulations, websocket, auth
+# from app.routers import logs
 
 settings = get_settings()
 logger = get_logger(__name__)
@@ -19,7 +19,7 @@ logger = get_logger(__name__)
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     """Application lifespan events."""
-    # Startup
+    
     logger.info("Starting TwinSec Studio API", extra={
         "version": settings.VERSION,
         "debug": settings.API_DEBUG
@@ -68,12 +68,11 @@ async def health_check():
     """Health check endpoint."""
     return {
         "status": "healthy",
-        "timestamp": "2025-10-01T00:00:00Z"
     }
 
 
 # Include routers
-# app.include_router(auth.router, prefix=f"{settings.API_V1_STR}/auth", tags=["Authentication"])
+app.include_router(auth.router, prefix=f"{settings.API_V1_STR}", tags=["Authentication"])
 app.include_router(models.router, prefix=f"{settings.API_V1_STR}", tags=["Models"])
 app.include_router(attacks.router, prefix=f"{settings.API_V1_STR}", tags=["Attacks"])
 app.include_router(simulations.router, prefix=f"{settings.API_V1_STR}", tags=["Simulations"])

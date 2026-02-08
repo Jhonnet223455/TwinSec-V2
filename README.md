@@ -176,35 +176,7 @@ frontend/
 - **Secrets:** Variables de entorno (.env)
 - **CORS:** Configurado para dominios permitidos
 
-## 📖 Documentación
 
-- [Arquitectura del Sistema](Backend/docs/ARCHITECTURE.md)
-- [API Documentation](http://localhost:8000/docs) (ejecutar servidor)
-- [Guía de Desarrollo](Backend/README.md)
-
-## 🧪 Testing
-
-```bash
-# Backend tests
-cd Backend/api
-pytest
-
-# Frontend tests
-cd frontend
-npm test
-```
-
-## 🤝 Contribución
-
-1. Fork el proyecto
-2. Crea una rama para tu feature (`git checkout -b feature/AmazingFeature`)
-3. Commit tus cambios (`git commit -m 'Add some AmazingFeature'`)
-4. Push a la rama (`git push origin feature/AmazingFeature`)
-5. Abre un Pull Request
-
-## 📝 Licencia
-
-MIT License
 
 ## 👥 Autores
 
